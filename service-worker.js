@@ -45,3 +45,24 @@ self.addEventListener('fetch', function(event) {
     )
   );
 });
+
+self.addEventListener('push', function(e) {
+  var options = {
+    body: 'Here is a notification body!',
+    icon: '/assets/images/bigbears.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    },
+    actions: [
+      {action: 'explore', title: 'Explore this new world',
+        icon: '/assets/images/bigbears.png'},
+      {action: 'close', title: 'Close notification',
+        icon: '/assets/images/bigbears.png'},
+    ]
+  };
+  e.waitUntil(
+    self.registration.showNotification('Hello Notification!', options)
+  );
+});
